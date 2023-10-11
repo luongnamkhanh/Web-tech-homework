@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin sinh viên</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+</head>
+
+<body>
+    <section class="content-top">
+        <div class="content-top-left">
+            <div class="content-top-left-top">
+                
+                    <img src="https://dean2020.edu.vn/wp-content/uploads/2019/06/hinh-6.png?fbclid=IwAR0lglhr6oJ5eQSRpGiweKiOS5ufU-k5ZFFVUu3MSm247pY_DVaq9Ef6m58"
+                        alt="background-image" class="background-image">
+                    <br>
+                    <img src="./static/images/anhthe.jpg" alt="avt-image" class="avt-image">
+                
+                <div class="content-top-left_user-inf">
+                    <p class="content-top-left_user-inf-name">MS: 20205184</p>
+                    <p class="content-top-left_user-inf-mssv">Họ tên: Lương Nam Khánh </p>
+                    <p class="content-top-left_user-inf-class">Lớp: ICT 01-K65</p>
+                    <p class="content-top-left_user-inf-email">Email: khanh.ln205184@sis.hust.edu.vn</p>
+                    <p class="content-top-left_user-inf-email-canhan">Email cá nhân: khanhpro692@gmail.com</p>
+                </div>
+            </div>
+            <div class="content-top-left-bottom">
+                <div class="content-top-left-title">
+                    <p class="tablinks active" onclick="openTableft(event,'status')">Trạng thái</p>
+                    <p class="tablinks" onclick="openTableft(event,'quanly')">Quản lý</p>
+                </div>
+                <div class="content-top-left_user-score" id="status">
+                    <p class="content-top-left_user-score-title">Trạng thái học tập: <span style="color:rgb(0, 150, 136);font-weight: bold;">Học</span>
+                    </p>
+                    <p class="content-top-left_user-score-GPA">CPA: 3.19 </p>
+                    <p class="content-top-left_user-score-No">Nợ: 0 TC
+                    </p>
+                    <p class="content-top-left_user-score-tichluy">Tích lũy: 100 TC
+                    </p>
+                    <p class="content-top-left_user-score-canhcao">Mức cảnh cáo: M0
+                    </p>
+                    <p class="content-top-left_user-score-trinhdo">Trình độ: 2
+                    </p>
+                </div>
+                <div class="content-top-left_user-score"  id ="quanly"></div>
+            </div>
+        </div>
+        <div class="content-top-right">
+            <div class="content-top-right-title">
+                <p class="tablinksright active" onclick="openTabright(event,'lylich')">Lý lịch</p>
+                <p class="tablinksright" onclick="openTabright(event,'quyetdinh')">Quyết định</p>
+                <p class="tablinksright" onclick="openTabright(event,'khenthuong')">Khen thưởng</p>
+                <p class="tablinksright" onclick="openTabright(event,'lienhe')">Liên hệ</p>
+                <p class="tablinksright" onclick="openTabright(event,'nhanxet')">Nhận xét</p>
+                <p class="tablinksright" onclick="openTabright(event,'hdthamgia')">Hoạt động tham gia</p>
+                <p class="blank">        </p>
+            </div>
+            <div class="content-top-right-tab" id ="lylich">
+                <div class="content-top-right__personal-infos">
+                    <h1>Thông tin cá nhân</h1>
+                    <table>
+                        <tr><td>Ngày sinh: 06/09/2002</td><td>Nơi sinh: YÊN BÁI</td><td>Giới tính: Nam</td></tr>
+                        <tr><td>Số CMTND: 123345678</td><td>Nơi cấp: YÊN BÁI</td><td>Ngày cấp:</td></tr>
+                        <tr><td>Dân tộc: KINH</td><td>Tôn giáo: KHÔNG</td><td>Chi đoàn:</td></tr>
+                        <tr><td>Ngày vào Đoàn:</td><td>Ngày vào Đảng:</td><td>Đoàn viên</td></tr>
+                    </table>
+                        <p style="margin-top: 0px">Đối tượng chính sách:</p>
+                        <p>Số tdẻ bảo hiểm: 1111111111</p>
+                        <p>Địa chỉ thường trú: TỈNH YÊN BÁI</p>
+                        <p>Nơi ở hiện tại: Truong Chinh Hanoi Vietnam</p>
+                
+                </div>
+                <div class="content-top-right__family-infos">
+                    <h1>Thông tin gia đình</h1>
+                    <div class="content-top-right__family-infos-dad">
+                        <h2>Họ và tên cha: NGUYỄN VĂN A</h2>
+                        <table>
+                            <tr><td>Dân tộc: KINH</td><td>Năm sinh: 10-10-1010</td><td>Quốc tịch: KINH</td></tr>
+                            <tr><td>Nơi làm việc:</td><td>Tôn giáo:</td><td>Nghề nghiệp: HƯU TRÍ</td></tr>
+                            <tr><td>Địa chỉ thường trú:</td></tr>
+                            <tr><td>Liên hệ: 1234567890</td></tr>
+                        </table>
+                    </div   >
+                    <div class="content-top-right__family-infos-mom">
+                        <h2>Họ và tên mẹ: NGUYỄN VĂN B</h2>
+                        <table>
+                            <tr><td>Dân tộc: KINH</td><td>Năm sinh: 01-01-0101</td><td>Quốc tịch: KINH</td></tr>
+                            <tr><td>Nơi làm việc:</td><td>Tôn giáo:</td><td>Nghề nghiệp: HƯU TRÍ</td></tr>
+                        </table>    
+                            <p>Địa chỉ thường trú: TỈNH YÊN BÁI</p>
+                            <p>Liên hệ: 1234567890</p>
+                    
+                    </div>
+                    <div class="content-top-right__family-infos-others">
+                        <h2>Thông tin người thân khác:</h2>
+                        <p style="padding-right: 300px">Thuộc hộ:</p>
+                        <p style="width: 364.2px">Số sổ:</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-top-right-tab"id="quyetdinh"></div>
+            <div class="content-top-right-tab"id="khenthuong"></div>
+            <div class="content-top-right-tab"id="lienhe"></div>
+            <div class="content-top-right-tab"id="nhanxet"></div>
+            <div class="content-top-right-tab"id="hdthamgia"></div>
+        </div>
+    </section>
+
+    <section class="content-bottom">
+        <div class="content-bottom-title">
+            <h1 class="graph-hoctap" >Biểu đồ học tập</h1>
+            <h1 class="graph-renluyen" >Biểu đồ rèn luyện</h1>
+        </div>
+        <br>
+        <div class="content-bottom-image">
+            <img class="chart" src="./static/images/chart.png" alt="">
+        </div>
+    </section>
+    <script src="./static/js/script.js"></script>
+</body>
+
+</html>

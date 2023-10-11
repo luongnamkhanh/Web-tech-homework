@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Socket.IO chat</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        padding-bottom: 3rem;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+      }
+
+      #form {
+        background: rgba(0, 0, 0, 0.15);
+        padding: 0.25rem;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        height: 3rem;
+        box-sizing: border-box;
+        /* backdrop-filter: blur(10px); */
+      }
+
+      #input {
+        border: none;
+        padding: 0 1rem;
+        /* flex-grow: 1; */
+        width: 85%;
+        border-radius: 2rem;
+        margin: 0.25rem;
+      }
+
+      #to {
+        border: none;
+        padding: 0 1rem;
+        /* flex-grow: 1; */
+        width: 10%;
+        border-radius: 2rem;
+        margin: 0.25rem;
+      }
+
+      #input:focus {
+        outline: none;
+      }
+
+      #form > button {
+        background: #333;
+        border: none;
+        padding: 0 1rem;
+        width: 5%;
+        margin: 0.25rem;
+        border-radius: 3px;
+        outline: none;
+        color: #fff;
+      }
+
+      #messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      #messages > li {
+        padding: 0.5rem 1rem;
+      }
+
+      #messages > li:nth-child(odd) {
+        background: #efefef;
+      }
+    </style>
+  </head>
+
+  <body>
+    <ul id="users"></ul>
+    <h1 id="yourname"></h1>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+      <input id="input" autocomplete="off" placeholder="Send message" />
+      <select id="to" title="Recipient username">
+        <option value="all">All</option>
+      </select>
+      <button>Send</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+      const socket = io();
+      const messages = document.getElementById("messages");
+      const form = document.getElementById("form");
+      const input = document.getElementById("input");
+      const name = document.getElementById("yourname");
+      const usersList = document.getElementById("users");
+      const toInput = document.getElementById("to");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (input.value) {
+          socket.emit("chat", toInput.value, input.value);
+          input.value = "";
+          toInput.value = "";
+        }
+      });
+
+      socket.on("users", (users) => {
+        // remove all previous user elements
+        while (usersList.firstChild) {
+          usersList.firstChild.remove();
+        }
+
+        // remove all previous options in the "to" select element
+        while (toInput.firstChild) {
+          toInput.firstChild.remove();
+        }
+
+        // add an option for sending a message to all users
+        let optionItem = document.createElement("option");
+        optionItem.textContent = "All";
+        optionItem.value = "all";
+        toInput.appendChild(optionItem);
+
+        // create and append new user elements and "to" select options
+        for (let id in users) {
+          const userItem = document.createElement("li");
+          userItem.textContent = users[id];
+          usersList.appendChild(userItem);
+
+          optionItem = document.createElement("option");
+          optionItem.textContent = users[id];
+          optionItem.value = users[id];
+          toInput.appendChild(optionItem);
+        }
+      });
+
+      socket.on("welcome", (yourname) => {
+        name.textContent = `You are ${yourname}`;
+      });
+
+      socket.on("join", (username) => {
+        alert(`${username} join`);
+      });
+
+      socket.on("sendMsg", (from, msg) => {
+        const item = document.createElement("li");
+        item.textContent = `${from}: ${msg}`;
+        messages.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+
+      socket.on("leave", (name, reason) => {
+        alert(`${name} leave because of ${reason}`);
+      });
+    </script>
+  </body>
+</html>

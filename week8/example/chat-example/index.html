@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io Chat</title>
+</head>
+
+<body>
+    <h1 id="yourname"></h1>
+    <ul id="messages"></ul>
+    <ul id="userList"></ul>
+    <form id="form" action="">
+        <input id="input" autocomplete="off" /><button>Send</button>
+    </form>
+    <!-- Load socket.io script from node_modules -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const messages = document.getElementById('messages');
+        const userList = document.getElementById('userList');
+        const form = document.getElementById('form');
+        const input = document.getElementById('input');
+        const yourname = document.getElementById('yourname');
+
+        // send message to server
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (input.value) {
+                socket.emit("chat", input.value);
+                input.value = "";
+            }
+        });
+
+        // receive message from server
+        socket.on("sendMsg", (from, msg) => {
+            const item = document.createElement("li");
+            item.textContent = `${from}: ${msg}`;
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+        // receive updated user list from server
+        socket.on("userList", (users) => {
+            userList.innerHTML = "";
+            users.forEach((user) => {
+                const item = document.createElement("li");
+                item.textContent = user;
+                item.addEventListener("click", () => {
+                    input.value = `@${user} `;
+                    input.focus();
+                });
+                userList.appendChild(item);
+            });
+        });
+    </script>
+</body>
+
+</html>

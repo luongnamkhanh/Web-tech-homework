@@ -1,0 +1,20 @@
+.container {
+  padding: 16px;
+  height: 100vh;
+}
+
+.gridContainer {
+  height: 100%;
+  align-items: center;
+}
+
+.navigator {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paper {
+  padding: 16px;
+}
